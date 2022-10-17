@@ -4,25 +4,35 @@
 }
 
 #start-game {
-   
     background: url("../images/back-s.jpg") top no-repeat;
     background-size: 65%;
     width:100%;
     height:100%;
     position: fixed;
-    background-color: beige;
+    background-color: #a8efff;
     text-align: center;
     font-family:'Cursive', Comic Sans MS, Comic Sans, cursive;
     font-size: 32px;
     padding-top: 60px;
-    text-shadow: 2px 1px 0 #fff, -1px 1px 0 #fff, 0px -1px 0 #fff
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-shadow: 2px 1px 0 #fff, -1px 1px 0 #fff, 0px -1px 0 #fff;
 }
-
+h1 {
+    position: absolute;
+    top: 90px;
+}
 p{
-    margin-top: 200px;
     font-size: 26px;
     color: #ca3a4b;
-    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 0px -1px 0 #000;
+    font-weight: bold;;
+    text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 0px -1px 0 #fff;
+    animation-duration: 0.3s;
+    animation-name: anim_move;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 .btn-start{
@@ -35,4 +45,35 @@ p{
     border-radius: 6px;
     background-color: #ca3a4b;
     color: #fff;
+    transition: .3s;
 }
+
+
+.btn-start:hover {
+    background-color: #f55a6d;
+    transform: scale(1.2);
+}
+
+#game-play {
+    display: none;
+}
+#canvas {
+    max-width: 100%;
+}
+
+@keyframes anim_move {
+    from {
+        margin-left: 10px;
+        color: #d9435c
+    }
+  
+    to {
+        margin-right: 10px;
+        color: #b42835;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    #start-game {
+        background-size: auto;
+    }
+  }
