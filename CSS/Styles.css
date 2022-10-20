@@ -73,6 +73,7 @@ p:last-child {
 }
 
 #win {
+    display: none;
     position: absolute;
     right: 200px;
     top: 150px;
@@ -105,6 +106,7 @@ img {
 
 
 #lose {
+    display: none;
     position: absolute;
     right: 200px;
     top: 150px;
@@ -113,7 +115,6 @@ img {
     height: 270px;
     border: 10px solid #b42835;
     border-radius: 20px;
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;

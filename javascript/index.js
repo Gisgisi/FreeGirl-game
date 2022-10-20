@@ -1,8 +1,9 @@
 
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext("2d");
-const gameIntro = document.querySelector('#intro')
-const win = document.getElementById('#win')
+const gameIntro = document.querySelector('#intro');
+const win = document.getElementById('win');
+const lose = document.getElementById('lose');
 
 
 //My visuals here except for collectables and obstacle
@@ -15,12 +16,6 @@ const girl = new Image()
 girl.src = "images/woman.png"
 
 const obstacleImage = new Image();
-
-// const birdOne = new Image()
-// birdOne.src = "../images/birdgifr.gif"
-
-// const birdTwo = new Image()
-// birdTwo.src = "../images/birdgifl.gif"
 
 const gamePlay = document.querySelector('#game-play');
 
@@ -43,23 +38,18 @@ function draw() {
     drawObstacle();
     bgMove();
     
-    //winAlert()
+    //lose and win
     gameId = requestAnimationFrame(draw)
     if (score < 0) {
         console.log(gameId);
         cancelAnimationFrame(gameId);
+        lose.style.display='flex'
     }
-    // if(score === 1000){
-    //     cancelAnimationFrame(gameId); 
-    //     winAlert();
-    // }
+    if(score >= 1000){
+        cancelAnimationFrame(gameId); 
+      win.style.display = 'block'
+    }
 }
-
-//winning window
-
-
-
-//losing window
 
 //How collectable appear as an object
 
@@ -94,7 +84,7 @@ class obstacle {
     }
 }
 
-//the obstacle has a random score defined here
+//For enemy's random score
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -120,26 +110,26 @@ function drawObstacle() {
         obstacleX = canvas.width;
         obstacleY = randomIntFromInterval(canvas.height - 100, canvas.height - 40);
         currentObstacle.setCollided(false);
+        ctx.clearRect(obstacleImage, obstacleX, obstacleY, currentObstacle.getWidth(), currentObstacle.getHeight());
+
     }
     scoreCount()
 }
 
 //Calculating score
 function scoreCount() {
-    if ((girlY < obstacleY + currentObstacle.getHeight() &&
-        girlY + 60 > obstacleY &&
-        obstacleX <= girlX + 40) ||
-        (girlY <= obstacleY + currentObstacle.getHeight &&
+    if ((obstacleX <= girlX + 40 &&
+        girlY < obstacleY + currentObstacle.getHeight() &&
+        girlY + 60 > obstacleY) ||
+        (girlY-10 <= obstacleY + currentObstacle.getHeight &&
             girlX + 50 > obstacleX &&
             girlX < obstacleX + currentObstacle.getWidth())) {
         if (!currentObstacle.getCollided()) {
             score += currentObstacle.getScore();
             document.getElementById("score").innerText = score;
-            currentObstacle.setCollided(true);
+            obstacleX = -100;
         }
-
     }
-
 }
 
 function randomIntFromInterval(min, max) {
@@ -148,7 +138,6 @@ function randomIntFromInterval(min, max) {
 
 
 //girl movement
-
 function girlUp() {
     if (girlY >= 450) {
         girlY -= 8;
@@ -176,24 +165,33 @@ function bgMove() {
 }
 
 
-//game start
+//Game start button works this way
 function startGame() {
     gameIntro.style.display = "none";
-    gamePlay.style.display = "block";;
+    gamePlay.style.display = "block";
     draw()
     girlDown()
     girlUp()
     bgMove()
 }
 
+//Back button works this way
 function backButton() {
     gameIntro.style.display = "flex";
     gamePlay.style.display = "none";
     cancelAnimationFrame(gameId);
+    location.reload()
 }
 
+//Restart button works this way
+function resetGame() {
+    lose.style.display = "none";
+    score = 0;
+    document.getElementById("score").innerText = score;
+    draw();
+}
 
-//bottuns
+//Buttons
 window.onload = () => {
     document.querySelector(".btn-start").addEventListener('click', startGame);
 
@@ -206,4 +204,5 @@ window.onload = () => {
         }
     });
     document.querySelector("#back-btn").addEventListener('click', backButton);
+    document.getElementById("return-btn").addEventListener('click',resetGame);
 }
