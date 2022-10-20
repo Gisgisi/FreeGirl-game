@@ -5,6 +5,23 @@ const gameIntro = document.querySelector('#intro');
 const win = document.getElementById('win');
 const lose = document.getElementById('lose');
 
+//Audio
+const introAudio = new Audio();
+introAudio.src = "audio/intro.mp3"
+
+const gameAudio = new Audio();
+gameAudio.src = "audio/play.mp3"
+
+const grabAudio = new Audio();
+grabAudio.src = "audio/grab.wav"
+const winAudio = new Audio();
+winAudio.src = "audio/win.wav"
+
+const loseAudio = new Audio();
+loseAudio.src = "audio/lose.wav"
+
+const evilAudio = new Audio();
+evilAudio.src = "audio/boolaugh.mp3"
 
 //My visuals here except for collectables and obstacle
 const background = new Image()
@@ -18,6 +35,8 @@ girl.src = "images/woman.png"
 const obstacleImage = new Image();
 
 const gamePlay = document.querySelector('#game-play');
+
+
 
 
 //Variables
@@ -37,17 +56,27 @@ function draw() {
     ctx.drawImage(girl, girlX, girlY, 60, 60);
     drawObstacle();
     bgMove();
-    
+    gameAudio.play();
+    gameAudio.volume = 0.4
+
+
     //lose and win
     gameId = requestAnimationFrame(draw)
     if (score < 0) {
         console.log(gameId);
         cancelAnimationFrame(gameId);
-        lose.style.display='flex'
+        lose.style.display = 'flex';
+        loseAudio.play();
+        lose.volume = 0.6;
+        gameAudio.pause();
+        evilAudio.pause();
     }
-    if(score >= 1000){
-        cancelAnimationFrame(gameId); 
-      win.style.display = 'block'
+    if (score >= 200) {
+        cancelAnimationFrame(gameId);
+        win.style.display = 'block';
+        winAudio.play();
+        winAudio.volume = 0.6;
+        gameAudio.pause()
     }
 }
 
@@ -121,13 +150,20 @@ function scoreCount() {
     if ((obstacleX <= girlX + 40 &&
         girlY < obstacleY + currentObstacle.getHeight() &&
         girlY + 60 > obstacleY) ||
-        (girlY-10 <= obstacleY + currentObstacle.getHeight &&
+        (girlY - 10 <= obstacleY + currentObstacle.getHeight &&
             girlX + 50 > obstacleX &&
             girlX < obstacleX + currentObstacle.getWidth())) {
         if (!currentObstacle.getCollided()) {
             score += currentObstacle.getScore();
             document.getElementById("score").innerText = score;
+            grabAudio.play()
             obstacleX = -100;
+        }
+        if (currentObstacle.getName() === "enemy") {
+            grabAudio.pause();
+            evilAudio.play();
+            evilAudio.playbackRate = 1.2;
+            grabAudio.volume = 0.6
         }
     }
 }
@@ -173,6 +209,7 @@ function startGame() {
     girlDown()
     girlUp()
     bgMove()
+
 }
 
 //Back button works this way
@@ -181,6 +218,7 @@ function backButton() {
     gamePlay.style.display = "none";
     cancelAnimationFrame(gameId);
     location.reload()
+
 }
 
 //Restart button works this way
@@ -204,5 +242,5 @@ window.onload = () => {
         }
     });
     document.querySelector("#back-btn").addEventListener('click', backButton);
-    document.getElementById("return-btn").addEventListener('click',resetGame);
+    document.getElementById("return-btn").addEventListener('click', resetGame);
 }
