@@ -15,13 +15,30 @@
         <button class="btn-start">START</button>
         <p>Collect all braids and flowers,
             <br>
-             and avoid enemies! 
-             <br>
-             Press UP↑ and DOWN↓</p>
+            and avoid enemies!
+            <br>
+            Press UP↑ and DOWN↓
+        </p>
     </div>
     <div id="game-play">
-        <button  id="back-btn">back</button>
+        <button id="back-btn">back</button>
         <div id="score">0</div>
+        <div id="win">
+            <div id="bird"><img src=" images/birdgifl.gif">
+                <img src=" images/birdgifr.gif">
+            </div>
+            <div id="wintext">"🌷YOU WON GIRL!🌷"
+                <br>
+                "HAPPY FREEDOM!"
+            </div>
+        </div>
+        <div id="lose">
+           <img src=" images/foot.gif">
+           <div id="losetext"> "TRY AGAIN!
+             "YOU CAN DO IT"</div>
+            <br>
+            <button id="return-btn">Restart</button>
+        </div>
         <canvas id="canvas" width="900" height="610"></canvas>
     </div>
 </body>

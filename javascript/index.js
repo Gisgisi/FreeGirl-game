@@ -2,6 +2,7 @@
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext("2d");
 const gameIntro = document.querySelector('#intro')
+const win = document.getElementById('#win')
 
 
 //My visuals here except for collectables and obstacle
@@ -15,6 +16,12 @@ const girl = new Image()
 girl.src = "../images/woman.png"
 
 const obstacleImage = new Image();
+
+// const birdOne = new Image()
+// birdOne.src = "../images/birdgifr.gif"
+
+// const birdTwo = new Image()
+// birdTwo.src = "../images/birdgifl.gif"
 
 const gamePlay = document.querySelector('#game-play');
 
@@ -36,6 +43,8 @@ function draw() {
     ctx.drawImage(girl, girlX, girlY, 60, 60);
     drawObstacle();
     bgMove();
+    
+    //winAlert()
     gameId = requestAnimationFrame(draw)
     if (score < 0) {
         console.log(gameId);
@@ -43,12 +52,13 @@ function draw() {
     }
     // if(score === 1000){
     //     cancelAnimationFrame(gameId); 
+    //     winAlert();
     // }
 }
 
 //winning window
-function win(){
-}
+
+
 
 //losing window
 

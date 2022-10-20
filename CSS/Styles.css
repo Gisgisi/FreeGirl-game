@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
 }
 
 body {
@@ -18,7 +19,6 @@ body {
     height: 100vh;
     background-color: #a8efff;
     text-align: center;
-    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
     font-size: 32px;
     padding-top: 60px;
     display: flex;
@@ -45,7 +45,7 @@ p {
     animation-direction: alternate;
 }
 
-p:last-child{
+p:last-child {
     margin-top: 1.5%;
     animation: none;
     font-size: 18px;
@@ -55,15 +55,12 @@ p:last-child{
 .btn-start {
     width: 150px;
     height: 50px;
-    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
     font-size: 20px;
     margin-top: 30px;
     border: 2px solid #000;
     border-radius: 6px;
     background-color: #ca3a4b;
     color: #fff;
-    transition: .3s;
-    cursor: pointer;
 }
 
 #score {
@@ -73,12 +70,87 @@ p:last-child{
     font-size: 20px;
     color: #F00;
     font-weight: bold;
-    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
 }
 
-.btn-start:hover {
+#win {
+    position: absolute;
+    right: 200px;
+    top: 150px;
+    background-color: #fff;
+    width: 500px;
+    height: 270px;
+    border: 10px solid #4f8eeb;
+    border-radius: 20px;
+}
+
+img {
+    width: 30%;
+    height: 30%;
+}
+
+#bird {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#wintext {
+    margin-bottom: 100px;
+    font-size: 30px;
+    text-align: center;
+    color: #b42835;
+    font-weight: bold;
+}
+
+
+#lose {
+    position: absolute;
+    right: 200px;
+    top: 150px;
+    background-color: #fff;
+    width: 500px;
+    height: 270px;
+    border: 10px solid #b42835;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#losetext{
+    padding-bottom: 70px;
+    font-size: 25px;
+    text-align: center;
+    color: #b42835;
+    font-weight: bold;
+}
+
+#lose img{
+   width: 50%;
+   height: 50%; 
+}
+
+
+#return-btn {
+
+    margin-top: 170px;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border: 2px solid #b42835;
+    border-radius: 6px;
+    background-color: rgb(247, 216, 216);
+    color: #b42835;
+    
+}
+
+button:hover {
     background-color: #f55a6d;
     transform: scale(1.2);
+    transition: .3s;
 }
 
 #game-play {
@@ -90,21 +162,23 @@ canvas {
     max-width: 100%;
 }
 
-#back-btn{
+#back-btn {
     margin-left: 12px;
     margin-top: 10px;
     position: absolute;
     width: 100px;
     height: 40px;
-    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
     font-size: 16px;
     border: 2px solid #fff;
     border-radius: 6px;
     background-color: #4f8eeb;
     color: #fff;
-    cursor: pointer;
+    
 }
 
+button{
+    cursor: pointer;
+}
 @keyframes anim_move {
     from {
         margin-left: 10px;
