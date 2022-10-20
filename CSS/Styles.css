@@ -45,6 +45,13 @@ p {
     animation-direction: alternate;
 }
 
+p:last-child{
+    margin-top: 1.5%;
+    animation: none;
+    font-size: 18px;
+    color: #000;
+}
+
 .btn-start {
     width: 150px;
     height: 50px;
@@ -56,8 +63,18 @@ p {
     background-color: #ca3a4b;
     color: #fff;
     transition: .3s;
+    cursor: pointer;
 }
 
+#score {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    color: #F00;
+    font-weight: bold;
+    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
+}
 
 .btn-start:hover {
     background-color: #f55a6d;
@@ -66,11 +83,26 @@ p {
 
 #game-play {
     display: none;
+    position: relative;
 }
 
 canvas {
     max-width: 100%;
-    margin-top: 50px;
+}
+
+#back-btn{
+    margin-left: 12px;
+    margin-top: 10px;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    font-family: 'Cursive', Comic Sans MS, Comic Sans, cursive;
+    font-size: 16px;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    background-color: #4f8eeb;
+    color: #fff;
+    cursor: pointer;
 }
 
 @keyframes anim_move {
