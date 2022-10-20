@@ -7,13 +7,12 @@ const win = document.getElementById('#win')
 
 //My visuals here except for collectables and obstacle
 const background = new Image()
-background.src = "../images/city.png"
-
+background.src = "images/city.png"
 const background2 = new Image()
-background2.src = "../images/city-mirror.png"
+background2.src = "images/city-mirror.png"
 
 const girl = new Image()
-girl.src = "../images/woman.png"
+girl.src = "images/woman.png"
 
 const obstacleImage = new Image();
 
@@ -85,7 +84,7 @@ class obstacle {
         return this.score
     }
     getImage() {
-        return "../images/" + this.name + ".png";
+        return "images/" + this.name + ".png";
     }
     getCollided() {
         return this.collided;
