@@ -23,7 +23,7 @@ loseAudio.src = "audio/lose.wav"
 const evilAudio = new Audio();
 evilAudio.src = "audio/boo.mp3"
 
-//My visuals here except for collectables and obstacle
+//My visuals here except for collectables and enemy
 const background = new Image()
 background.src = "images/city.png"
 const background2 = new Image()
@@ -38,7 +38,6 @@ const gamePlay = document.querySelector('#game-play');
 
 
 
-
 //Variables
 let bgX = 0, bgY = 0;
 let bgX2 = canvas.width, bgY2 = 0;
@@ -46,6 +45,7 @@ let girlX = 35, girlY = 500;
 let obstacleX = canvas.width, obstacleY = canvas.height - 130;
 let gameId = 0;
 let score = 0;
+
 
 
 //Drawing the gameplay inviroment
@@ -57,17 +57,20 @@ function draw() {
     drawObstacle();
     bgMove();
     gameAudio.play();
-    gameAudio.volume = 0.4
+    gameAudio.volume = 0.1
+    introAudio.pause();
 
 
     //lose and win
     gameId = requestAnimationFrame(draw)
     if (score < 0) {
         console.log(gameId);
+        score = 0;
+        document.getElementById("score").innerText = score;
         cancelAnimationFrame(gameId);
         lose.style.display = 'flex';
         loseAudio.play();
-        lose.volume = 0.6;
+        lose.volume = 0.25;
         gameAudio.pause();
         evilAudio.pause();
     }
@@ -75,7 +78,7 @@ function draw() {
         cancelAnimationFrame(gameId);
         win.style.display = 'block';
         winAudio.play();
-        winAudio.volume = 0.6;
+        winAudio.volume = 0.25;
         gameAudio.pause()
     }
 }
@@ -156,14 +159,15 @@ function scoreCount() {
         if (!currentObstacle.getCollided()) {
             score += currentObstacle.getScore();
             document.getElementById("score").innerText = score;
-            grabAudio.play()
+            grabAudio.play();
+            grabAudio.volume = 0.3
             obstacleX = -100;
         }
         if (currentObstacle.getName() === "enemy") {
             grabAudio.pause();
             evilAudio.play();
-            evilAudio.playbackRate = 1.2;
-            grabAudio.volume = 0.6
+            evilAudio.playbackRate = 1.1;
+            evilAudio.volume = 0.3
         }
     }
 }
