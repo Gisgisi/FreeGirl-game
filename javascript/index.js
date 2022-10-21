@@ -21,7 +21,7 @@ const loseAudio = new Audio();
 loseAudio.src = "audio/lose.wav"
 
 const evilAudio = new Audio();
-evilAudio.src = "audio/boolaugh.mp3"
+evilAudio.src = "audio/boo.mp3"
 
 //My visuals here except for collectables and obstacle
 const background = new Image()
@@ -71,7 +71,7 @@ function draw() {
         gameAudio.pause();
         evilAudio.pause();
     }
-    if (score >= 200) {
+    if (score >= 250) {
         cancelAnimationFrame(gameId);
         win.style.display = 'block';
         winAudio.play();
@@ -137,7 +137,7 @@ function drawObstacle() {
     if (obstacleX < -40) {
         currentObstacle = obstacleArray[randomIntFromInterval(0, obstacleArray.length - 1)];
         obstacleX = canvas.width;
-        obstacleY = randomIntFromInterval(canvas.height - 100, canvas.height - 40);
+        obstacleY = randomIntFromInterval(canvas.height -100, canvas.height - 50);
         currentObstacle.setCollided(false);
         ctx.clearRect(obstacleImage, obstacleX, obstacleY, currentObstacle.getWidth(), currentObstacle.getHeight());
 
