@@ -74,7 +74,7 @@ function draw() {
         gameAudio.pause();
         evilAudio.pause();
     }
-    if (score >= 250) {
+    if (score >= 150) {
         cancelAnimationFrame(gameId);
         win.style.display = 'block';
         winAudio.play();
